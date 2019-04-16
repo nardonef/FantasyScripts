@@ -17,4 +17,3 @@ def yahoologin():
     yahoo_access_key = auths['access_token']
     yahoo_api = Yahoo_Api(yahoo_consumer_key, yahoo_consumer_secret, yahoo_access_key)#, yahoo_access_secret)
     return yahoo_api._login()
-    

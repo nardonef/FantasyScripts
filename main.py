@@ -2,9 +2,17 @@
 """
 Created on Wed Apr  3 13:19:21 2019
 
-@author: jjy
+@author: Frank Nardone
 """
 
-from scr.roster import updateroster #gets roster from yahoo api
+from scr.roster import getGameId, getRoster, getTeamId
 
-updateroster(leagueid=59224,numteams=12)
+leaugeId = 59224
+
+try:
+    #gameId = getGameId("mlb")
+    #print(getRoster(388, leaugeId,8))
+    print(getTeamId(388, leaugeId, 'f'))
+except:
+    print("Exception!!!!!")
+
