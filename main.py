@@ -8,11 +8,11 @@ Created on Wed Apr  3 13:19:21 2019
 from scr.roster import getGameId, getRoster, getTeamId
 
 leaugeId = 59224
+teamId = 8
 
 try:
     #gameId = getGameId("mlb")
-    #print(getRoster(388, leaugeId,8))
-    print(getTeamId(388, leaugeId, 'f'))
-except:
-    print("Exception!!!!!")
-
+    print(getRoster(388, leaugeId, 8))
+    #print(getTeamId(388, leaugeId, 'f'))
+except Exception as e:
+    print("oh")

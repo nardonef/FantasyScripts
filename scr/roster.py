@@ -30,6 +30,7 @@ def getGameId(gameType):
     url = 'https://fantasysports.yahooapis.com/fantasy/v2/game/' + str(gameType)
     response = oauth.session.get(url, params={'format': 'json'})
     data = response.json()
+
     if hasattr(data, "error"):
         return None
 
@@ -40,14 +41,25 @@ def getRoster(gameid,leagueid,team):
     url = 'https://fantasysports.yahooapis.com/fantasy/v2/team/' + str(gameid) + '.l.' + str(leagueid) + '.t.' + str(team) + '/roster'
     response = oauth.session.get(url, params={'format': 'json'})
     data = response.json()
-    print(data)
+    playercount = 0
+    players = []
 
-def getTeamId(gameid,leagueid,teamName=1):
+    for item in (data["fantasy_content"]["team"][1]["roster"]["0"]["players"]):
+        if 'count' not in item:
+            players.append(data["fantasy_content"]["team"][1]["roster"]["0"]["players"][str(playercount)]["player"][0])
+        playercount = playercount + 1
+
+    return players
+
+# TODO BE ABLE TO GET TEAMID BY PASSING IN
+def getTeamId(gameid,leagueid):
     oauth = yahoologin()
+
     for team in range(1, 13):
         url = 'https://fantasysports.yahooapis.com/fantasy/v2/team/' + str(gameid) + '.l.' + str(leagueid) + '.t.' + str(team) + '/roster'
         response = oauth.session.get(url, params={'format': 'json'})
         data = response.json()
+
         if hasattr(data, "error"):
             return data
 
